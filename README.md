@@ -1,2 +1,3 @@
 # transvault-
 Transvault is a digital platform where truck drivers upload documents like licenses and permits. A unique QR code is generated for each driver, allowing police to scan and instantly access all credentials for quick and efficient roadside verification.
+Transvault is a digital platform designed to streamline the management and verification of truck drivers' documents. It enables drivers to securely upload all essential documents—such as licenses, permits, and insurance papers—into a centralized system. Each driver is assigned a unique QR code that encapsulates their document information. Law enforcement officers can scan this QR code to instantly access and verify the driver's credentials, facilitating quick and efficient roadside inspections.
