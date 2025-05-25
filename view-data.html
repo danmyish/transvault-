@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Document Data</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            box-sizing: border-box;
+            text-align: center;
+            background: url(truck.jpg) fixed;
+            background-size: cover;
+            background-position: center;
+            
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            align-items: center;
+            margin-top: 70px;
+        }
+        .section {
+            background-color: #f9f9f9;
+            padding: 50px 30px;
+            border: 1.5px solid #d1d1d1;
+            border-radius: 0.5em;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            text-align: left;
+            overflow-x: auto;
+        }
+        button {
+            padding: 10px 20px;
+            border: 1px solid #d1d1d1;
+            outline: none;
+            border-radius: 0.5em;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            background-color: #4caf50;
+            transition: 0.3s background-color;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #d1d1d1;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #documents-list {
+            margin-top: 20px;
+            display: none; /* Hide initially */
+        }
+        .document-item {
+            padding: 10px;
+            border: 1px solid #d1d1d1;
+            border-radius: 0.5em;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .document-item a {
+            color: #4caf50;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .document-item a:hover {
+            text-decoration: underline;
+        }
+        .no-data {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Document Data</h1>
+        <div class="section">
+            <div id="form-container"></div>
+            <button id="show-documents">Show Documents</button>
+            <div id="documents-list"></div>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function loadFormData(uniqueKey) {
+            fetch(`/form-data/${uniqueKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    const formData = data;
+                    const formHtml = `
+                        <table>
+                            ${Object.keys(formData).map(key => `
+                                <tr>
+                                    <th>${key.replace(/_/g, ' ').toUpperCase()}</th>
+                                    <td>${formData[key] === null || formData[key] === '' ? 'N/A' : JSON.stringify(formData[key])}</td>
+                                </tr>
+                            `).join('')}
+                        </table>
+                    `;
+                    document.getElementById('form-container').innerHTML = formHtml;
+                })
+                .catch(error => {
+                    console.error('Error fetching form data:', error);
+                    document.getElementById('form-container').innerHTML = 'Error fetching form data.';
+                });
+        }
+
+        function loadDocuments(uniqueKey) {
+            fetch(`/documents/${uniqueKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    const documentsList = document.getElementById('documents-list');
+                    if (data.files.length === 0) {
+                        documentsList.innerHTML = '<div class="no-data">No documents available.</div>';
+                    } else {
+                        const documentsHtml = data.files.map(doc => `
+                            <div class="document-item">
+                                <a href="/view/${uniqueKey}/${doc}" target="_blank">${doc}</a>
+                            </div>
+                        `).join('');
+                        documentsList.innerHTML = documentsHtml;
+                    }
+                    documentsList.style.display = 'block'; // Show the documents list after loading
+                })
+                .catch(error => {
+                    console.error('Error fetching documents:', error);
+                    document.getElementById('documents-list').innerHTML = 'Error fetching documents.';
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const uniqueKey = getQueryParam('key');
+            if (uniqueKey) {
+                loadFormData(uniqueKey);
+
+                document.getElementById('show-documents').addEventListener('click', function () {
+                    loadDocuments(uniqueKey);
+                });
+            } else {
+                document.getElementById('form-container').innerHTML = 'No data key provided.';
+                document.getElementById('show-documents').style.display = 'none';
+                document.getElementById('documents-list').innerHTML = '<div class="no-data">No data key provided.</div>';
+            }
+        });
+    </script>
+</body>
+</html>

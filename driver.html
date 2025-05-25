@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e2a38;
+            padding: 15px;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .header .logo {
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .info {
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .info:hover {
+            transform: translateY(-5px);
+        }
+
+        .info p {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #1e2a38;
+        }
+
+        .dashboard {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            width: 90%;
+            margin-bottom: 20px;
+        }
+
+        .dashboard h2 {
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 600;
+            color: #1e2a38;
+        }
+
+        .dashboard .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard .chart {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f4f8;
+        }
+
+        .dashboard .stats {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            margin: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: translateY(-10px);
+        }
+
+        .button i {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .dashboard .content {
+                flex-direction: column;
+            }
+
+            .dashboard .chart {
+                width: 120px;
+                height: 120px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .button {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="123.jpg" alt="Transvault">
+            </div>
+            <h1>TRANSVAULT</h1>
+        </div>
+
+        <div class="info">
+            <p>"Empowering Drivers on Every Journey - Support, Safety, and Service at Your Fingertips"</p>
+        </div>
+
+        <div class="dashboard">
+            <h2>Dashboard</h2>
+            <div class="content">
+                <div class="chart">
+                    <svg>
+                        <circle cx="50%" cy="50%" r="40%" fill="#ddd" />
+                        <circle cx="50%" cy="50%" r="30%" fill="#ccc" />
+                        <circle cx="50%" cy="50%" r="20%" fill="#bbb" />
+                    </svg>
+                </div>
+                <div class="stats">
+                    <ul>
+                        <li>Transporter Statistics</li>
+                        <li>Drivers Statistics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <div class="button" onclick="window.location.href='reader.html'">
+                <i class="fas fa-hand-holding-water"></i>
+                <p>Scan Qr code</p>
+            </div>
+            <div class="button" onclick="window.location.href='https://www.google.com/maps/search/?api=1&query=petrol+pump+near+me'">
+                <i class="fas fa-clipboard-check"></i>
+                <p>Fueling</p>
+            </div>
+            <div class="button" onclick="window.location.href='routes.html'">
+                <i class="fas fa-file-alt"></i>
+                <p>Route</p>
+            </div>
+            <div class="button" onclick="window.location.href='https://www.google.com/maps/search/?api=1&query=dhaba+near+me'">
+                <i class="fas fa-home"></i>
+                <p>Accomodation</p>
+            </div>
+            <div class="button" onclick="window.location.href='Sos.html'">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>SOS</p>
+            </div>
+            <div class="button" onclick="window.location.href='TOLL.html'">
+                <i class="fas fa-clipboard-list"></i>
+                <p>TOLL PAYMENTS</p>
+            </div>
+            <div class="button" onclick="window.location.href='jobs.html'">
+                <i class="fas fa-user"></i>
+                <p>JOBS DONE</p>
+            </div>
+            
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
+</body>
+</html>

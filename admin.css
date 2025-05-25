@@ -1,0 +1,286 @@
+:root {
+    --bg-color: #f5f5f5;
+    --text-color: #333;
+    --form-bg: rgba(255, 255, 255, 0.9);
+    --input-bg: #fff;
+    --input-border: #ccc;
+    --button-bg: #007bff;
+    --button-hover-bg: #0056b3;
+    --qr-code-bg: rgba(255, 255, 255, 0.9);
+    --menu-bg: #fff;
+    --menu-text-color: #333;
+    --slider-bg: #2196f3;
+    --slider-before-bg: yellow;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    background: var(--form-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    margin: 50px auto;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Ensure the form is correctly stacked */
+    z-index: 10; /* Ensure the form is below the menu */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-color);
+    margin-bottom: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="datetime-local"]:focus,
+textarea:focus {
+    border-color: var(--button-bg);
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+button {
+    background-color: var(--button-bg);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+    transform: scale(1.05);
+}
+
+#qrCodeContainer {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--qr-code-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#qrCodeContainer h2 {
+    margin: 0 0 10px;
+    color: var(--text-color);
+}
+
+#qrCodeContainer img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+#qrCodeContainer img:hover {
+    transform: scale(1.1);
+}
+
+.file-upload-container {
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    background-color: var(--button-bg);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+}
+
+.custom-file-upload:focus,
+.custom-file-upload:active {
+    opacity: 0.85;
+}
+
+.custom-file-upload svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.custom-file-upload span {
+    display: inline-block;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('transvaultintro.png') no-repeat center center;
+    background-size: cover;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.content {
+    display: none;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 8px 0;
+    text-align: center;
+    position: relative;
+    z-index: 100; /* Ensure the header is above the body content but below the dropdown */
+}
+
+.hamburger-menu {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 101; /* Ensure the menu is above the header */
+}
+
+.hamburger-icon {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+    z-index: 102;
+}
+
+.menu-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: var(--menu-bg);
+    color: var(--menu-text-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000; /* Ensure the menu is above other elements */
+    width: 200px;
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s, pointer-events 0.3s;
+}
+
+.menu-dropdown.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.menu-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-dropdown ul li {
+    margin: 10px 0;
+}
+
+.menu-dropdown ul li a {
+    color: var(--menu-text-color);
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-dropdown ul li a:hover {
+    background-color: #f0f0f0;
+    color: var(--button-bg);
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.progress-container {
+    margin-top: 10px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.progress-bar {
+    height: 20px;
+    width: 0%;
+    background-color: #007bff;
+    border-radius: 5px;
+    transition: width 0.4s;
+}
+
+.progress-text {
+    margin-top: 5px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.hidden {
+    display: none;
+}

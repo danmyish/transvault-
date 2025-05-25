@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS - TransVault</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Link to favicon -->
+    <style>
+        /* Reset and basic body styling */
+        * {
+            margin: 50;
+            padding: 50;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f7;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            background-color: #5cb85c;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: aqua;
+        }
+        .sos-button {
+            width: 250px;
+            padding: 50px;
+            font-size: 25px;
+            color: rgb(185, 62, 62);
+            border: 55px;
+            border-radius: 8px;
+            transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+            cursor:all-scroll;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .sos-button:hover {
+            transform: scale(1.05);
+        }
+        /* Styling each emergency service button with unique colors */
+        .police { background-color: #ff4b4b;}
+        .ambulance { background-color: #5bc0de; }
+        .fire { background-color: #f0ad4e; }
+        .roadside { background-color: #5cb85c; }
+    </style>
+</head>
+<body>
+
+<h2>Emergency Assistance - TransVault</h2>
+
+<div class="button-container">
+    <button class="sos-button police" onclick="triggerSOS('Police')">🚔 Police</button>
+    <button class="sos-button ambulance" onclick="triggerSOS('Ambulance')">🚑 Ambulance</button>
+    <button class="sos-button fire" onclick="triggerSOS('Fire')">🚒 Fire</button>
+    <button class="sos-button roadside" onclick="triggerSOS('Roadside Assistance')">🛠 Roadside Assistance</button>
+</div>
+
+<script>
+    function triggerSOS(service) {
+        // Placeholder action - replace with an API call, SMS, or custom alert as needed
+        alert(`SOS request sent to ${service} services.`);
+        
+        // Logic to perform different actions based on the emergency service
+        switch(service) {
+            case 'Police':
+                console.log("Sending request to Police assistance.");
+                break;
+            case 'Ambulance':
+                console.log("Sending request to Ambulance service.");
+                break;
+            case 'Fire':
+                console.log("Sending request to Fire department.");
+                break;
+            case 'Roadside Assistance':
+                console.log("Sending request to Roadside Assistance.");
+                break;
+            default:
+                console.log("Service not recognized.");
+        }
+    }
+</script>
+
+</body>
+</html>

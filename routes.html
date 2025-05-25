@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Planner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Route Tracker</h1>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="origin" placeholder="Enter origin location">
+                <button id="locate-origin" class="locate-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="8"/>
+                        <line x1="12" y1="2" x2="12" y2="4"/>
+                        <line x1="12" y1="20" x2="12" y2="22"/>
+                        <line x1="2" y1="12" x2="4" y2="12"/>
+                        <line x1="20" y1="12" x2="22" y2="22"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="destination" placeholder="Enter destination location">
+                <button id="locate-destination" class="locate-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="8"/>
+                        <line x1="12" y1="2" x2="12" y2="4"/>
+                        <line x1="12" y1="20" x2="12" y2="22"/>
+                        <line x1="2" y1="12" x2="4" y2="12"/>
+                        <line x1="20" y1="12" x2="22" y2="22"/>
+                    </svg>
+                </button>
+            </div>
+            <button id="find-route" class="search-btn">Find Route</button>
+        </div>
+
+        <div id="route-info" class="route-card hidden">
+            <div class="details">
+                <div class="detail-card">
+                    <p>Estimated Distance</p>
+                    <div id="distance" class="detail-value">-</div>
+                </div>
+                <div class="detail-card">
+                    <p>Estimated Time</p>
+                    <div id="duration" class="detail-value">-</div>
+                </div>
+                <div class="detail-card">
+                    <p>Best Route</p>
+                    <div id="route-name" class="detail-value">-</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div id="loading" class="loading hidden">Calculating route...</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
